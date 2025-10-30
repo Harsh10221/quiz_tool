@@ -1,0 +1,1 @@
+if we put the process.env. anythin at top of the function or outsde of the functino the nodejs / ecma6 scans files for import and export statements to make a map but because of the variablesa are access outside of the functon but still the all contorlller file runs first 
