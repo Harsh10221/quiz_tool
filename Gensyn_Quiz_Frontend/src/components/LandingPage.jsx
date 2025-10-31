@@ -193,7 +193,7 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
       <Particles
         className="absolute inset-0 z-0"
         quantity={200}
-        ease={10}
+        ease={50}
         // color="#E6E6FA"
         color="#ffffff"
         refresh

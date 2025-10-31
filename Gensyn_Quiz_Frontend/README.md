@@ -1,5 +1,40 @@
 create a user database and then add the lvl the user clear so we can update it and also use the jwt . 
 
+
+
+
+
+
+
+
+when checking the answers there should be a loading and , error component if error occor 
+
+when updating leaderboard there aslo should be a , loading and error window
+
+
+
+set the hrf links 
+
+
+
+
+
+leaderboard if there is no data then then loading should be there error 404 no data found / no response / and there should be a way to go back into previous select-lelvl
+
+when gathering question and there should be 2-3 seconds time window so the user can see the loading bar . 
+
+
+
+
+
+
+
+
+
+
+
+
+
 [
 when in hard or intermidate mode when selecting a option a x icon visible it should be not there 
 

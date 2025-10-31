@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TrophyIcon, RestartIcon, ShareIcon } from "./Icons.jsx";
 import axios from "axios";
+import Loader from "./Loader.jsx";
+import ErrorComponent from "../quiz/components/ErrorComponent.jsx";
 
 export default function QuizResult({
   setCurrentView,
@@ -12,17 +14,23 @@ export default function QuizResult({
   level,
   totalTimeLeft,
 }) {
+
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     if (onQuizComplete) {
       onQuizComplete(level, score, totalQuestions);
     }
-  }, []); // Runs only once when the component mounts
+  }, []);
 
   const handleAddDateToLeaderboardNewUser = async () => {
     window.location.href = "http://localhost:3000/api/v1/users/auth/discord";
   };
 
   const handleAddDateToLeaderboard = async () => {
+    setIsLoading(true)
     try {
       const res = await axios.post(
         "http://localhost:3000/api/v1/users/update-score",
@@ -33,12 +41,16 @@ export default function QuizResult({
         },
         { withCredentials: true }
       );
-
-      console.log("This is responne ", res);
+      setIsLoading(false)
+      
+      // console.log("This is responne ", res);
     } catch (error) {
+      setIsError(true)
+      setErrorMsg(error.message)
       console.error("Error while adding data", error);
     }
   };
+
 
   const userDetails = localStorage?.getItem("userData");
 
@@ -63,6 +75,49 @@ export default function QuizResult({
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
   )}`;
+
+   if (isError) {
+    return (
+      <ErrorComponent
+        // onCut={handleDismissError}
+        onRetry={() => setIsError(false)}
+        message={errorMsg}
+      />
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex-col h-full w-full flex items-center justify-center">
+        <Loader width={55} height={55} />
+        <p
+          className="
+          text-lg 
+          mt-4 
+          font-semibold 
+          text-transparent 
+          bg-clip-text 
+          bg-gradient-to-r 
+        from-pink-800 to-[#fad7d1]
+          animate-pulse
+          "
+        >
+          {/* from-yellow-400 to-orange-500 */}
+          {/* from-amber-400 to-red-600 */}
+          {/* from-pink-400 to-orange-400 */}
+          {/* from-indigo-400 to-purple-500 */}
+          {/* Gathering the best questions for you... */}
+          Secure channel established. Fetching data...
+          {/* Syncing with question database...
+          Compiling the question bank...
+          Please wait while we calibrate the difficulty.
+          Verifying question bank checksum...
+          Building secure assessment environment...
+          // Secure channel established. Fetching data... */}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="font-sans bg-black text-white min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">

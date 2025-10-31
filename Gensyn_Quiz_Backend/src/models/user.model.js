@@ -13,13 +13,7 @@ const userSchema = new mongoose.Schema(
       index: true,
     },
     totalTimeConsumed: { type: Number, default: 0, index: true },
-    // beginnerHighestScore: {
-
-    //   type: Number,
-    //   default: 0,
-    // },
     scores: {
-     
       Beginner: {
         beginnerHighestScore: {
           type: Number,

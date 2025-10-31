@@ -1,41 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
 import axios from "axios";
+import ErrorComponent from "../quiz/components/ErrorComponent";
+import { useNavigate } from "react-router-dom";
 
 // --- SVG Icons (TrophyIcon and CrownIcon remain the same) ---
-const TrophyIcon = () => (
-  <svg
-    className="w-8 h-8 mr-2"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <defs>
-      <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" style={{ stopColor: "#c084fc" }} />
-        <stop offset="100%" style={{ stopColor: "#ec4899" }} />
-      </linearGradient>
-    </defs>
-    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" stroke="url(#iconGradient)" />
-    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" stroke="url(#iconGradient)" />
-    <path d="M4 22h16" stroke="url(#iconGradient)" />
-    <path
-      d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.87 18.75 7 20.24 7 22"
-      stroke="url(#iconGradient)"
-    />
-    <path
-      d="M14 14.66V17c0 .55.47.98.97 1.21C16.13 18.75 17 20.24 17 22"
-      stroke="url(#iconGradient)"
-    />
-    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" stroke="url(#iconGradient)" />
-  </svg>
-);
 
 const CrownIcon = () => (
   <svg
@@ -155,7 +124,6 @@ const PodiumItem = ({ player, rank }) => {
       ? "ring-gray-300"
       : "ring-amber-600"; // Using amber for 3rd place bronze
 
-
   return (
     <div
       className={`flex  flex-col items-center gap-1 ${
@@ -190,65 +158,159 @@ const PodiumItem = ({ player, rank }) => {
 
 // --- UPDATED PlayerRow Component ---
 const PlayerRow = ({ player, rank }) => (
-  console.log("this is player",player),
-  <div className="flex  items-center justify-between bg-black/30 p-3 rounded-xl border border-white/10">
-    <div className="flex items-center gap-4">
-      <span className="text-lg font-mono text-gray-400 w-6 text-center">
-        {rank}
-      </span>
-      {/* Replaced div with Avatar component */}
-      <Avatar
-        avatarUrl={`https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png`}
-        fallbackLetter={player.fallbackLetter}
-        colorHex={player.colorHex}
-        size="w-10 h-10"
-      />
-      <span className="text-lg font-figtree font-medium text-white">
-        {player.userName}
+  console.log("this is player", player),
+  (
+    <div className="flex  items-center justify-between bg-black/30 p-3 rounded-xl border border-white/10">
+      <div className="flex items-center gap-4">
+        <span className="text-lg font-mono text-gray-400 w-6 text-center">
+          {rank}
+        </span>
+        {/* Replaced div with Avatar component */}
+        <Avatar
+          avatarUrl={`https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png`}
+          fallbackLetter={player.fallbackLetter}
+          colorHex={player.colorHex}
+          size="w-10 h-10"
+        />
+        <span className="text-lg font-figtree font-medium text-white">
+          {player.userName}
+        </span>
+      </div>
+      <span className="text-lg font-figtree font-bold text-[#ffb997]">
+        {player.totalScore.toLocaleString()} pts
       </span>
     </div>
-    <span className="text-lg font-figtree font-bold text-[#ffb997]">
-      {player.totalScore.toLocaleString()} pts
-    </span>
-  </div>
+  )
 );
 
 // --- Main Leaderboard Component (Unchanged) ---
 export default function Leaderboard() {
-  
-  const [leaderboardData, setleaderboardData] = useState(null)
-  
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const userHigestscore = JSON.parse(localStorage?.getItem('userData'))?.totalHighScore
+    
+
+  const [leaderboardData, setleaderboardData] = useState(null);
+
+  const handleDismissError = () => {
+    navigate("/select-lvl");
+  };
+
   useEffect(() => {
+    setIsLoading(true);
+
     const getLeaderboardData = async () => {
       try {
         const res = await axios.get(
           "http://localhost:3000/api/v1/users/get/leaderboard-data"
         );
         // console.log("this is res",res.data.top10LeaderboardData)
-        setleaderboardData(res.data.top10LeaderboardData)
-
-
-        
+        setIsLoading(false);
+        setleaderboardData(res.data.top10LeaderboardData);
       } catch (error) {
-        console.error("Error while geting user data",error)
+        setIsLoading(false);
+        setIsError(true);
+        setErrorMsg(error.message);
+        console.error("Error while geting user data", error);
       }
     };
 
-    getLeaderboardData()
+    getLeaderboardData();
   }, []);
 
   const topThree = leaderboardData?.slice(0, 3);
   const restOfPlayers = leaderboardData?.slice(3);
 
-  console.log("topthree",topThree)
-  console.log("restof player",restOfPlayers)
+  // console.log("topthree",topThree)
+  // console.log("restof player",restOfPlayers)
 
+  if (isLoading) {
+    return (
+      <div className="flex-col h-full w-full flex items-center justify-center">
+        <Loader width={55} height={55} />
+        <p
+          className="
+          text-lg 
+          mt-4 
+          font-semibold 
+          text-transparent 
+          bg-clip-text 
+          bg-gradient-to-r 
+        from-pink-800 to-[#fad7d1]
+          animate-pulse
+          "
+        >
+          {/* from-yellow-400 to-orange-500 */}
+          {/* from-amber-400 to-red-600 */}
+          {/* from-pink-400 to-orange-400 */}
+          {/* from-indigo-400 to-purple-500 */}
+          Verifying leaderboard data checksum...
+          {/* Syncing with question database...
+          Compiling the question bank...
+          Please wait while we calibrate the difficulty.
+          Verifying question bank checksum...
+          Building secure assessment environment...
+          Secure channel established. Fetching data... */}
+        </p>
+      </div>
+    );
+  }
 
+  if (isError) {
+    return (
+      <ErrorComponent
+        onCut={handleDismissError}
+        title={"404 Not found"}
+        onRetry={() => setIsError(false)}
+        message={errorMsg}
+      />
+    );
+  }
 
   return (
-    <div className="font-sans  bg-black text-white min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="font-sans bg-black text-white min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
       <ParticleBackground />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(40,_10,_80,_0.5),_transparent_50%)] z-0"></div>
+
+      {/* <div className=" top-40 left-8 absolute z-50">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+          />
+        </svg>
+      </div> */}
+
+       <div className="mb-3 flex items-center justify-between w-full text-[#c2bebe] bg-white/10 font-figtree   backdrop-blur-lg  py-2 px-4 rounded-2xl shadow-2xl shadow-purple-500/10 border border-white/20 text-center  ">
+        <svg
+        onClick={()=> navigate('/')}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          />
+        </svg>
+
+        {/* <div className="text-[#c2bebe] bg-white/10 font-figtree   backdrop-blur-lg  py-2 px-4 rounded-3xl shadow-2xl shadow-purple-500/10 border border-white/20 text-center  "> */}
+        <div>Higest score : {userHigestscore || 0}</div>
+      </div>
 
       <main className="z-10 bg-white/10 backdrop-blur-lg p-4 rounded-2xl shadow-2xl shadow-purple-500/10 border border-white/20 w-full max-w-lg">
         {/* Header */}
@@ -272,7 +334,6 @@ export default function Leaderboard() {
           <PodiumItem player={topThree?.[0]} rank={1} />
           {/* 3rd Place (Right) */}
           <PodiumItem player={topThree?.[2]} rank={3} />
-
         </div>
 
         {/* List Section (4+) */}

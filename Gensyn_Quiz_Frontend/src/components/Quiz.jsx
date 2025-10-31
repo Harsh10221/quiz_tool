@@ -5,6 +5,7 @@ import { CheckIcon, XIcon } from "./Icons.jsx";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "./Loader.jsx";
+import ErrorComponent from "../quiz/components/ErrorComponent.jsx";
 
 const QUESTION_TIME = 15;
 
@@ -131,6 +132,8 @@ export default function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setquestions] = useState(quizData);
   //   const [questions, setquestions] = useState(null);
+  const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [answers, setAnswers] = useState([]);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
@@ -194,12 +197,14 @@ export default function App() {
         setquestions(res.data.QuestionBank);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error in getting questions");
+        console.error("Error in getting questions", error);
+        setIsError(true);
+        setErrorMsg(error.message);
       }
     };
-
+    if (isError) return;
     getQuestions();
-  }, []);
+  }, [isError]);
 
   useEffect(() => {
     if ((level === "Expert" || level === "Intermediate") && selectedOption) {
@@ -213,7 +218,8 @@ export default function App() {
                 level == "Expert" ? "hard" : "medium"
               }-questions-answers`,
 
-              { data: answers, totalTimeLeft },{withCredentials:true}
+              { data: answers, totalTimeLeft },
+              { withCredentials: true }
             );
 
             // console.log("this is response", response);
@@ -348,9 +354,19 @@ export default function App() {
     return "border-white/20 cursor-not-allowed";
   };
 
-  // const onGoToLeaderboard = () => {
-  //   navigate
-  // }
+  const handleDismissError = () => {
+    navigate("/select-lvl");
+  };
+
+  if (isError) {
+    return (
+      <ErrorComponent
+        onCut={handleDismissError}
+        onRetry={() => setIsError(false)}
+        message={errorMsg}
+      />
+    );
+  }
 
   if (isLoading) {
     return (

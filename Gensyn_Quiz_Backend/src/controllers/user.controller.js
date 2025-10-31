@@ -172,16 +172,16 @@ const handleCallBackFromDiscord = async (req, res) => {
 const handleUserDetails = async (req, res) => {
   // console.log("got the req",req.user);
 
-  const userDataToSend = {...req.user._doc}
+  const userDataToSend = { ...req.user._doc };
 
   delete userDataToSend.avatar_Hash;
   // delete userDataToSend.$isNew;
   // delete userDataToSend.scores
   // delete userDataToSend._id
-  delete userDataToSend.createdAt
-  delete userDataToSend.updatedAt
+  delete userDataToSend.createdAt;
+  delete userDataToSend.updatedAt;
 
-  userDataToSend.avatar_url = `https://cdn.discordapp.com/avatars/${userDataToSend.userId}/${userDataToSend.avatar_Hash}.png`
+  userDataToSend.avatar_url = `https://cdn.discordapp.com/avatars/${userDataToSend.userId}/${userDataToSend.avatar_Hash}.png`;
 
   res.json({
     message: "ok",
@@ -221,6 +221,13 @@ const handleEasyQuestion = async (req, res) => {
 
 const handleMediumQuestion = async (req, res) => {
   const questionToSend = [];
+  // console.log("i am called ", req.user);
+
+  if (req.user.userLevel == "Beginner") {
+    return res.json({
+      message: "What are you doing mate ? clear the beginner lvl first ",
+    });
+  }
   // console.log(mediumQuestionBank?.length);
 
   for (let i = 0; i < 10; i++) {
@@ -232,7 +239,7 @@ const handleMediumQuestion = async (req, res) => {
 
     delete tempobj?.answer;
 
-    questionToSend.push(mediumQuestionBank[randomIndex]);
+    questionToSend.push(tempobj);
   }
 
   //  delete questionToSend?.answer
@@ -247,6 +254,10 @@ const handleMediumQuestion = async (req, res) => {
 const handleMediumeAnswerCheck = async (req, res) => {
   let score = 0;
   const data = req.body.data;
+
+  if(!data){
+    return res.status(400).json({message:"Data is required"})
+  }
 
   for (let i = 0; i < data.length; i++) {
     const obj = data[i];
@@ -271,6 +282,12 @@ const handleMediumeAnswerCheck = async (req, res) => {
 
 const handleHardQuestion = async (req, res) => {
   const questionToSend = [];
+
+  if (req.user.userLevel == "Intermediate") {
+    return res.json({
+      message: "What are you doing mate ? clear the Intermediate lvl first ",
+    });
+  }
   // console.log(easyQuestionBank?.length);
 
   for (let i = 0; i < 10; i++) {
@@ -295,30 +312,21 @@ const handleHardQuestion = async (req, res) => {
 const handleHardAnswerCheck = async (req, res) => {
   let score = 0;
   const data = req.body.data;
-  // console.log("This is response", req.body);
-  // console.log("This si length ",data)
-  // console.log("This type of  ",typeof data)
-  // console.log("This si length ",data.length)
+
+  if (!data) {
+    return res.status(400).json({message:"Data is required"})
+  }
 
   for (let i = 0; i < data.length; i++) {
     const obj = data[i];
     const questionId = Number(obj.id) - 1;
-    // console.log("this is obj ", obj);
-    // console.log("THis is id of the question ", obj.id);
-    // console.log("THis is the actual obj ", hardQuestionBank[questionId]);
     const correctAnswer = hardQuestionBank[questionId]?.answer;
-
-    // console.log("this correct answer ", correctAnswer);
-
     const isCorrect = obj.answer == correctAnswer;
-    // console.log("this status   ", isCorrect);
-
     isCorrect ? score++ : null;
   }
   return res.status(200).json({
     TotalScoreIs: score,
   });
-  // console.log("total score is ", score);
 };
 
 // const handleUpdateScore = async (req, res) => {
@@ -452,7 +460,7 @@ const handleUpdateScore = async (req, res) => {
       // console.log("fieldpath", fieldPathForTotalTimeConsumedUpdate);
 
       user.set(fieldPathForScoreUpdate, newlevelScore);
-      user.set(fieldPathForTotalTimeConsumedUpdate, 150-totalTimeLeft);
+      user.set(fieldPathForTotalTimeConsumedUpdate, 150 - totalTimeLeft);
 
       console.log("before update user doc:", user);
 
@@ -477,7 +485,7 @@ const handleUpdateScore = async (req, res) => {
         { userId: user._id },
         {
           userId: user._id,
-          discord_Id:user.userId,
+          discord_Id: user.userId,
           userName: user.userName,
           avatar: user.avatar_Hash,
           totalScore: newTotalScore,
@@ -521,21 +529,20 @@ const handleUpdateScore = async (req, res) => {
 };
 
 const handleLeaderboardData = async (req, res) => {
-
-  const top10LeaderboardData = await Leaderboard.find({ totalScore: { $gt: 0 } })
-  .sort({totalScore: -1 ,totalTimeConsumed:1 })
-  .limit(10)
+  const top10LeaderboardData = await Leaderboard.find({
+    totalScore: { $gt: 0 },
+  })
+    .sort({ totalScore: -1, totalTimeConsumed: 1 })
+    .limit(10);
 
   // const top10LeaderboardData = await Leaderboard.find()
-
 
   // console.log("this is the top ",top10LeaderboardData.length)
 
   return res.json({
-    message:"ok",
-    top10LeaderboardData
-  })
-
+    message: "ok",
+    top10LeaderboardData,
+  });
 };
 
 export {

@@ -94,7 +94,7 @@ export default function SelectQuizLvl({
 
   return (
     <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center p-4 font-sans text-center">
-      <div className="mb-5 flex items-center justify-between w-full text-[#c2bebe] bg-white/10 font-figtree   backdrop-blur-lg  py-2 px-4 rounded-3xl shadow-2xl shadow-purple-500/10 border border-white/20 text-center  ">
+      <div className="mb-5 flex items-center justify-between w-full text-[#c2bebe] bg-white/10 font-figtree   backdrop-blur-lg  py-2 px-4 rounded-2xl shadow-2xl shadow-purple-500/10 border border-white/20 text-center  ">
         <svg
         onClick={()=> navigate('/')}
           xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ export default function SelectQuizLvl({
         </svg>
 
         {/* <div className="text-[#c2bebe] bg-white/10 font-figtree   backdrop-blur-lg  py-2 px-4 rounded-3xl shadow-2xl shadow-purple-500/10 border border-white/20 text-center  "> */}
-        <div>Higest score : {userHigestscore}</div>
+        <div>Higest score : {userHigestscore|| 0}</div>
       </div>
 
       <div className="w-full max-w-md">
