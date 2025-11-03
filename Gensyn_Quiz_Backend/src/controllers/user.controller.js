@@ -277,7 +277,7 @@ const handleEasyQuestion = async (req, res) => {
   const questionToSend = [];
   // console.log(easyQuestionBank?.length);
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 1; i++) {
     // const element = array[i];
     const randomIndex = Math.floor(Math.random() * 50);
     // console.log("This is random index", randomIndex);
@@ -663,6 +663,8 @@ const handleGuestLogin = async (req, res) => {
       refresh_Token,
     });
 
+    console.log("Refresh token when creating the guest doc",refresh_Token)
+
     // console.log("this is new doc", updatedoc);
 
     if (!updatedoc) {
@@ -677,13 +679,11 @@ const handleGuestLogin = async (req, res) => {
 
     return res
       .cookie("accessToken", access_Token, {
-        maxAge: 864000000,
         httpOnly: true,
         secure: false,
         path: "/",
       })
       .cookie("refreshToken", refresh_Token, {
-        maxAge: 2592000000,
         httpOnly: true,
         secure: false,
         path: "/",

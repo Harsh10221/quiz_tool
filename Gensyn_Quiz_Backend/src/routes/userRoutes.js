@@ -27,6 +27,7 @@ router.get("/get/leaderboard-data",handleLeaderboardData);
 
 router.post("/update-score",verifyJwt,handleUpdateScore);
 
+// router.get("/get/easy-questions",verifyJwt,handleEasyQuestion);
 router.get("/get/easy-questions",handleEasyQuestion);
 
 router.get("/get/medium-questions",verifyJwt, handleMediumQuestion);

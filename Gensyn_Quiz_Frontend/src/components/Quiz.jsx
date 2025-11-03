@@ -62,69 +62,6 @@ const initialLeaderboard = [
   { name: "David", score: 2 },
 ];
 
-// --- SVG Icons ---
-// const CheckIcon = ({ className }) => (
-//     <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//         <path d="M20 6 9 17l-5-5" />
-//     </svg>
-// );
-
-// const TrophyIcon = ({ className }) => (
-//     <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//         <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.87 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.13 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
-//     </svg>
-// );
-
-// --- Particle Background Component ---
-// This component creates an animated starfield background using CSS.
-// const ParticleBackground = () => {
-//     return (
-//         <>
-//             <style>
-//                 {`
-//                 @keyframes move-stars {
-//                     from { background-position: 0 0; }
-//                     to { background-position: -10000px 5000px; }
-//                 }
-//                 .stars {
-//                     position: absolute;
-//                     top: 0;
-//                     left: 0;
-//                     right: 0;
-//                     bottom: 0;
-//                     width: 100%;
-//                     height: 100%;
-//                     display: block;
-//                     background: transparent;
-//                 }
-//                 .stars-1 {
-//                     background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)), radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)), radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
-//                     background-repeat: repeat;
-//                     background-size: 200px 200px;
-//                     animation: move-stars 200s linear infinite;
-//                 }
-//                 .stars-2 {
-//                      background-image: radial-gradient(1px 1px at 10px 50px, #eee, rgba(0,0,0,0)), radial-gradient(1px 1px at 60px 90px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 80px 40px, #ddd, rgba(0,0,0,0)), radial-gradient(2px 2px at 120px 140px, #fff, rgba(0,0,0,0)), radial-gradient(2px 2px at 150px 180px, #fff, rgba(0,0,0,0));
-//                     background-repeat: repeat;
-//                     background-size: 300px 300px;
-//                     animation: move-stars 150s linear infinite;
-//                 }
-//                 .stars-3 {
-//                      background-image: radial-gradient(2px 2px at 50px 50px, #eee, rgba(0,0,0,0)), radial-gradient(2px 2px at 100px 110px, #fff, rgba(0,0,0,0)), radial-gradient(3px 3px at 150px 80px, #ddd, rgba(0,0,0,0)), radial-gradient(3px 3px at 220px 180px, #fff, rgba(0,0,0,0));
-//                     background-repeat: repeat;
-//                     background-size: 400px 400px;
-//                     animation: move-stars 100s linear infinite;
-//                 }
-//                 `}
-//             </style>
-//             <div className="stars stars-1"></div>
-//             <div className="stars stars-2"></div>
-//             <div className="stars stars-3"></div>
-//         </>
-//     );
-// };
-
-// --- Main App Component ---
 
 export default function App() {
   const navigate = useNavigate();
@@ -273,7 +210,7 @@ export default function App() {
     ]);
 
     if (level !== "Expert" || "Intermediate") {
-      const isCorrect = option === questions[currentQuestionIndex].answer;
+      const isCorrect = option === questions[currentQuestionIndex]?.answer;
 
       if (isCorrect) setScore((prevScore) => prevScore + 1);
     }
