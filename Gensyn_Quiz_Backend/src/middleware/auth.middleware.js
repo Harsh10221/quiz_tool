@@ -24,11 +24,14 @@ export const verifyJwt = async (req, res, next) => {
       throw new Error("User not found with this userid ");
     }
 
-    req.user = user
+    req.user = user;
     // console.log("result", result);
 
     next();
   } catch (error) {
+
+    
+
     console.error("There was an errror while verifying jwt ", error);
   }
 };

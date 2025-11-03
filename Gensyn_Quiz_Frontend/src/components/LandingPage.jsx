@@ -15,6 +15,7 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
   const navigate = useNavigate();
   const btnRef = useRef(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [guestLoginOptionVisible, setguestLoginOptionVisible] = useState(false);
   const transitionColor = currentView === "A" ? "#000" : "#FFF"; // Black or White
   const btnPosition = btnRef.current?.getBoundingClientRect();
 
@@ -25,6 +26,7 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
   const handleLogout = async () => {
     try {
       await axios.post(
+        // "https://quiz-backend-zyav.onrender.com/api/v1/users/logout",
         "http://localhost:3000/api/v1/users/logout",
         {},
         {
@@ -38,6 +40,10 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
     } finally {
       localStorage.removeItem("userData");
     }
+  };
+
+  const showGuestLoginOptions = () => {
+    setguestLoginOptionVisible((prev) => !prev);
   };
 
   console.log("This is btn proprites ", btnPosition?.y);
@@ -136,17 +142,80 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
           </div>
         </div>
         {userData ? (
-          <button
-            onClick={handleLogout}
-            className="text-black bg-white font-figtree font-medium  rounded-2xl py-1.5 px-4 "
-          >
-            Logout
-          </button>
+          userData?.isGuest ? (
+            <div className="relative">
+              <button
+              onClick={showGuestLoginOptions}
+                className="text-white bg-yellow-500 w-auto text-center font-medium 
+               rounded-2xl py-1.5 px-4 shadow-md
+               transition-transform duration-150 ease-in-out
+               active:scale-95"
+              >
+                Guest Profile
+              </button>
+              {guestLoginOptionVisible && (
+                <div
+                  className="absolute right-0 mt-2 w-44 
+               flex flex-col gap-2 p-2
+               bg-white/10 backdrop-blur-lg
+               rounded-2xl border border-white/20
+               shadow-xl"
+                >
+                  <button
+                  onClick={() =>
+                (window.location.href =
+                  // "https://quiz-backend-zyav.onrender.com/api/v1/users/auth/discord")
+                  "http://localhost:3000/api/v1/users/auth/discord")
+              }
+                    className="text-white bg-blue-500 w-full text-center 
+                 font-medium rounded-xl py-2 px-4 
+                 transition-filter duration-100 ease-in-out
+                 active:brightness-90"
+                  >
+                    Verify Dc
+                  </button>
+
+                  {/* --- Logout Button --- */}
+                  <button
+                  onClick={handleLogout}
+                    className="text-black bg-white w-full text-center 
+                 font-medium rounded-xl py-2 px-4
+                 transition-filter duration-100 ease-in-out
+                 active:brightness-90"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            // <button
+            //   // onClick={handleLogout}
+
+            //   onClick={() =>
+            //     (window.location.href =
+            //       // "https://quiz-backend-zyav.onrender.com/api/v1/users/auth/discord")
+            //       "http://localhost:3000/api/v1/users/auth/discord")
+            //   }
+            //   className="text-white bg-blue-500 w-40 text-center font-figtree font-medium  rounded-2xl py-1.5 px-4 "
+            // >
+            //   Verify Dc
+            // </button>
+
+            <button
+              onClick={handleLogout}
+              className="text-black bg-white font-figtree font-medium  rounded-2xl py-1.5 px-4 "
+            >
+              Logout
+            </button>
+          )
         ) : (
           <button
-            onClick={() =>
-              (window.location.href =
-                "http://localhost:3000/api/v1/users/auth/discord")
+            onClick={
+              () =>
+                (window.location.href =
+                  "https://quiz-backend-zyav.onrender.com/api/v1/users/auth/discord")
+              // "http://localhost:3000/api/v1/users/auth/discord")
             }
             className="text-black  bg-white font-figtree font-medium  rounded-2xl py-1.5 px-4 "
           >
@@ -174,7 +243,7 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
           className="text-black mr-5 bg-white font-figtree font-medium  rounded-3xl py-2 px-4 "
         >
           {" "}
-         Let's begin
+          Let's begin
         </button>
         <Link to="/leaderboard">
           <button

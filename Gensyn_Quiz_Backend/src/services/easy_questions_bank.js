@@ -1,553 +1,540 @@
+export const easyQuestionBank = [
+  {
+    id: 1,
+    question: "What is the main purpose of the Gensyn Protocol?",
+    options: [
+      "To build a new social media platform.",
+      "To create a decentralized AI training protocol.",
+      "To design and manufacture faster computer chips.",
+      "To offer a decentralized video streaming service.",
+    ],
+    answer: "To create a decentralized AI training protocol.",
+  },
+  {
+    id: 2,
+    question: "What kind of network is Gensyn building for AI training?",
+    options: [
+      "A private network for university research.",
+      "A centralized network owned by one corporation.",
+      "A decentralized compute network open to anyone.",
+      "A small network exclusively for gaming clients.",
+    ],
+    answer: "A decentralized compute network open to anyone.",
+  },
+  {
+    id: 3,
+    question: "Who are the 'Submitters' in the Gensyn network?",
+    options: [
+      "The end-users who provide ML tasks to the network.",
+      "The hardware providers who run the computations.",
+      "The auditors who check the network's security.",
+      "The core developers writing the protocol's code.",
+    ],
+    answer: "The end-users who provide ML tasks to the network.",
+  },
+  {
+    id: 4,
+    question: "Who are the 'Solvers' in the Gensyn network?",
+    options: [
+      "Investors who 'solve' the network's funding.",
+      "Users who submit questions to the help desk.",
+      "People who write the official documentation.",
+      "Workers who perform computation on their hardware.",
+    ],
+    answer: "Workers who perform computation on their hardware.",
+  },
+  {
+    id: 5,
+    question: "What is the role of 'Verifiers'?",
+    options: [
+      "They verify the identity of all new users.",
+      "They create the new AI models for the network.",
+      "They check the computational proofs from Solvers.",
+      "They write marketing articles about the network.",
+    ],
+    answer: "They check the computational proofs from Solvers.",
+  },
+  {
+    id: 6,
+    question: "What major problem in AI does Gensyn aim to solve?",
+    options: [
+      "The high cost and limited access to compute power.",
+      "The lack of creative and original AI models.",
+      "The difficulty of downloading large AI models.",
+      "Too many programming languages for AI.",
+    ],
+    answer: "The high cost and limited access to compute power.",
+  },
+  {
+    id: 7,
+    question: "How does Gensyn reward participants for their compute time?",
+    options: [
+      "With company-issued stock options.",
+      "With official 'thank you' notes.",
+      "With direct payments via the protocol.",
+      "With free software licenses.",
+    ],
+    answer: "With direct payments via the protocol.",
+  },
+  {
+    id: 8,
+    question: "What tech manages tasks and payments programmatically?",
+    options: [
+      "A team of human administrators.",
+      "A telephone hotline system.",
+      "Internal email and spreadsheets.",
+      "Blockchain smart contracts.",
+    ],
+    answer: "Blockchain smart contracts.",
+  },
+  {
+    id: 9,
+    question:
+      "The Gensyn network is described as a layer-1 protocol. What does this mean?",
+    options: [
+      "It has only one primary feature.",
+      "It's a foundational blockchain network.",
+      "It's the first layer of network security.",
+      "It's designed only for beginner users.",
+    ],
+    answer: "It's a foundational blockchain network.",
+  },
+  {
+    id: 10,
+    question: "What is BlockAssist?",
+    options: [
+      "A customer support chatbot.",
+      "The name of the Gensyn headquarters.",
+      "An AI-driven Minecraft environment.",
+      "A new network security feature.",
+    ],
+    answer: "An AI-driven Minecraft environment.",
+  },
+  {
+    id: 11,
+    question: "What is the purpose of the Gensyn Public Testnet?",
+    options: [
+      "To sell the final version of the product.",
+      "To allow the community to stress-test the protocol.",
+      "To host a gaming competition for prizes.",
+      "To publish the company's blog posts.",
+    ],
+    answer: "To allow the community to stress-test the protocol.",
+  },
+  {
+    id: 12,
+    question: "What does the term 'trustless' mean for Gensyn?",
+    options: [
+      "The network is not secure and cannot be trusted.",
+      "The network has never been tested by third parties.",
+      "You cannot trust the results from the AI models.",
+      "Participants don't need to know or trust each other.",
+    ],
+    answer: "Participants don't need to know or trust each other.",
+  },
+  {
+    id: 13,
+    question: "The Gensyn network is a marketplace for what?",
+    options: [
+      "Compute power.",
+      "Digital art and NFTs.",
+      "Used computer parts.",
+      "Pre-trained AI models.",
+    ],
+    answer: "Compute power.",
+  },
+  {
+    id: 14,
+    question: "What is one of the fundamental challenges Gensyn solves?",
+    options: [
+      "Designing cool logos for AI companies.",
+      "Marketing the network to new users.",
+      "The verification of completed ML work.",
+      "Hiring qualified blockchain employees.",
+    ],
+    answer: "The verification of completed ML work.",
+  },
+  {
+    id: 15,
+    question: "How does BlockAssist help users understand Gensyn?",
+    options: [
+      "By providing a written exam on protocol specs.",
+      "By visualizing decentralized AI coordination.",
+      "By offering financial advice on token-omics.",
+      "By installing the required node software.",
+    ],
+    answer: "By visualizing decentralized AI coordination.",
+  },
+  {
+    id: 16,
+    question: "The Gensyn network is a custom version of what blockchain tech?",
+    options: [
+      "A Bitcoin Sidechain.",
+      "A Solana Fork.",
+      "A Ripple Ledger.",
+      "An Ethereum Rollup.",
+    ],
+    answer: "An Ethereum Rollup.",
+  },
+  {
+    id: 17,
+    question: "In BlockAssist, how does the AI bot learn?",
+    options: [
+      "By observing the user's actions.",
+      "By reading books from an in-game library.",
+      "By watching YouTube tutorial videos.",
+      "It comes pre-programmed with all skills.",
+    ],
+    answer: "By observing the user's actions.",
+  },
+  {
+    id: 18,
+    question: "What is a key benefit of decentralizing AI training?",
+    options: [
+      "It makes the training process much slower.",
+      "It can lower costs and increase access to compute.",
+      "It limits participation to a few large companies.",
+      "It increases the cost for everyone involved.",
+    ],
+    answer: "It can lower costs and increase access to compute.",
+  },
+  {
+    id: 19,
+    question: "Does Gensyn require an 'administrative overseer'?",
+    options: [
+      "Yes, a large team is required for 24/7 oversight.",
+      "Only on weekends and holidays.",
+      "Yes, a single CEO makes all final decisions.",
+      "No, it is facilitated programmatically.",
+    ],
+    answer: "No, it is facilitated programmatically.",
+  },
+  {
+    id: 20,
+    question: "What is 'parallelisation' in deep learning?",
+    options: [
+      "Training models across many devices at once.",
+      "Running different models one after another.",
+      "A specific type of AI model architecture.",
+      "A security protocol for protecting data.",
+    ],
+    answer: "Training models across many devices at once.",
+  },
+  {
+    id: 21,
+    question:
+      "What happens after a user trains their model in a BlockAssist 'episode'?",
+    options: [
+      "The model is automatically deleted.",
+      "The user must pay a fine to the network.",
+      "The user uploads their model to Hugging Face.",
+      "The user wins a cash prize from Gensyn.",
+    ],
+    answer: "The user uploads their model to Hugging Face.",
+  },
+  {
+    id: 22,
+    question: "What is 'latent compute supply'?",
+    options: [
+      "The most expensive compute power available.",
+      "Compute power that is currently idle or underutilized.",
+      "Only compute power from laptop CPUs.",
+      "Compute power that doesn't exist yet.",
+    ],
+    answer: "Compute power that is currently idle or underutilized.",
+  },
+  {
+    id: 23,
+    question: "The Gensyn Testnet will culminate in what event?",
+    options: [
+      "A large party for the developers.",
+      "The complete shutdown of the network.",
+      "The Mainnet launch.",
+      "The release of a new Minecraft game.",
+    ],
+    answer: "The Mainnet launch.",
+  },
+  {
+    id: 24,
+    question:
+      "The Gensyn protocol is designed for what specific type of computation?",
+    options: [
+      "General web browsing and hosting.",
+      "Sending and receiving emails.",
+      "Live video editing and rendering.",
+      "Deep learning and AI model training.",
+    ],
+    answer: "Deep learning and AI model training.",
+  },
+  {
+    id: 25,
+    question: "In a decentralized system, who owns the hardware?",
+    options: [
+      "The individual participants of the network.",
+      "One central company (e.g., Gensyn).",
+      "The government of the host country.",
+      "No one owns it; it is public property.",
+    ],
+    answer: "The individual participants of the network.",
+  },
+  {
+    id: 26,
+    question: "What is a 'cold-start' issue for a marketplace?",
+    options: [
+      "The website servers loading too slowly.",
+      "The challenge of matching supply and demand when new.",
+      "Users frequently forgetting their passwords.",
+      "The network servers getting too cold.",
+    ],
+    answer: "The challenge of matching supply and demand when new.",
+  },
+  {
+    id: 27,
+    question:
+      "For ML engineers, which is often more important: data privacy or model privacy?",
+    options: [
+      "Model privacy.",
+      "They are equally important.",
+      "Neither is important.",
+      "Data privacy.",
+    ],
+    answer: "Data privacy.",
+  },
+  {
+    id: 28,
+    question: "What community platform is mentioned for staying up to date?",
+    options: ["Discord.", "Facebook.", "TikTok.", "LinkedIn."],
+    answer: "Discord.",
+  },
+  {
+    id: 29,
+    question: "BlockAssist turns reinforcement learning into a what?",
+    options: [
+      "A boring academic chore.",
+      "A difficult math problem.",
+      "A playable experiment.",
+      "A full-length movie.",
+    ],
+    answer: "A playable experiment.",
+  },
+  {
+    id: 30,
+    question: "What is the general goal of a 'Testnet'?",
+    options: [
+      "To process real financial transactions.",
+      "To provide a live testing environment without real value.",
+      "To be the final, finished product for sale.",
+      "To store user photos and videos.",
+    ],
+    answer: "To provide a live testing environment without real value.",
+  },
+  {
+    id: 31,
+    question: "People who *need* compute are on which side of the marketplace?",
+    options: [
+      "The supply side.",
+      "The regulator side.",
+      "The worker side.",
+      "The demand side.",
+    ],
+    answer: "The demand side.",
+  },
+  {
+    id: 32,
+    question:
+      "People who *have* spare hardware are on which side of the marketplace?",
+    options: [
+      "The customer side.",
+      "The demand side.",
+      "The supply side.",
+      "The designer side.",
+    ],
+    answer: "The supply side.",
+  },
+  {
+    id: 33,
+    question: "What is a major benefit of a decentralized network?",
+    options: [
+      "It's controlled by a single, trustworthy company.",
+      "It's generally slower and less reliable.",
+      "It always costs more than centralized options.",
+      "It's resistant to censorship by a single entity.",
+    ],
+    answer: "It's resistant to censorship by a single entity.",
+  },
+  {
+    id: 34,
+    question: "The process of checking if work was done correctly is called:",
+    options: ["Verification.", "Guessing.", "Computation.", "Submission."],
+    answer: "Verification.",
+  },
+  {
+    id: 35,
+    question: "What does AI stand for?",
+    options: [
+      "Automated Intelligence.",
+      "Artistic Intelligence.",
+      "Actual Intelligence.",
+      "Artificial Intelligence.",
+    ],
+    answer: "Artificial Intelligence.",
+  },
+  {
+    id: 36,
+    question: "What is 'Reinforcement Learning'?",
+    options: [
+      "A type of computer memory card.",
+      "Learning by getting rewards or punishments.",
+      "Learning from a static, unchanging dataset.",
+      "A method for making hardware stronger.",
+    ],
+    answer: "Learning by getting rewards or punishments.",
+  },
+  {
+    id: 37,
+    question: "What popular game is BlockAssist built in?",
+    options: ["Minecraft.", "Fortnite.", "Roblox.", "Among Us."],
+    answer: "Minecraft.",
+  },
+  {
+    id: 38,
+    question: "The Gensyn network helps to coordinate remote...",
+    options: [
+      "Team meetings.",
+      "Company parties.",
+      "Execution.",
+      "Data storage.",
+    ],
+    answer: "Execution.",
+  },
+  {
+    id: 39,
+    question: "What is a 'node' in a decentralized network?",
+    options: [
+      "A central server that controls the network.",
+      "An individual computer connected to the network.",
+      "A type of connection cable.",
+      "A user's password or login.",
+    ],
+    answer: "An individual computer connected to the network.",
+  },
+  {
+    id: 40,
+    question: "Does using the Gensyn Testnet involve real economic value?",
+    options: [
+      "Yes, you can become a millionaire on it.",
+      "Yes, but only developers can earn real money.",
+      "Only on Tuesdays and holidays.",
+      "No, it's a testing environment without real value.",
+    ],
+    answer: "No, it's a testing environment without real value.",
+  },
+  {
+    id: 41,
+    question: "What is a key component for training large AI models?",
+    options: [
+      "Access to powerful compute hardware like GPUs.",
+      "A fast connection for streaming movies.",
+      "A high-quality microphone.",
+      "A comfortable office chair.",
+    ],
+    answer: "Access to powerful compute hardware like GPUs.",
+  },
+  {
+    id: 42,
+    question: "Training an AI model involves feeding it large amounts of...",
+    options: ["Electricity.", "Encouragement.", "Data.", "Coffee."],
+    answer: "Data.",
+  },
+  {
+    id: 43,
+    question: "A 'protocol' in this context is a set of...",
+    options: [
+      "Company policies for employees.",
+      "Rules for communication between computers.",
+      "Legal regulations for a country.",
+      "Fashion trends for developers.",
+    ],
+    answer: "Rules for communication between computers.",
+  },
+  {
+    id: 44,
+    question: "What does 'off-chain' mean?",
+    options: [
+      "Computations that occur outside of the main blockchain.",
+      "Something that happens directly on the main blockchain.",
+      "A broken link in a physical chain.",
+      "A system that is currently not working or offline.",
+    ],
+    answer: "Computations that occur outside of the main blockchain.",
+  },
+  {
+    id: 45,
+    question: "Why is 'work verification' a hard problem for deep learning?",
+    options: [
+      "The files are too large to send over email.",
+      "No one cares if the work is correct.",
+      "AI models are too simple to verify.",
+      "Each step of the computation depends on the previous one.",
+    ],
+    answer: "Each step of the computation depends on the previous one.",
+  },
+  {
+    id: 46,
+    question: "What is the general idea behind a 'marketplace'?",
+    options: [
+      "A place where only one person can sell things.",
+      "A social media group for professionals.",
+      "A system that brings buyers and sellers together.",
+      "A type of common software bug.",
+    ],
+    answer: "A system that brings buyers and sellers together.",
+  },
+  {
+    id: 47,
+    question: "Who can become a 'Solver' on the Gensyn network?",
+    options: [
+      "Anyone with compatible compute hardware.",
+      "Only large, certified corporations.",
+      "Only people with a PhD in computer science.",
+      "Only the original creators of the protocol.",
+    ],
+    answer: "Anyone with compatible compute hardware.",
+  },
+  {
+    id: 48,
+    question: "The Gensyn protocol is intended for what kind of engineers?",
+    options: [
+      "Mechanical Engineers.",
+      "Machine Learning (ML) Engineers.",
+      "Civil Engineers.",
+      "Sound Engineers.",
+    ],
+    answer: "Machine Learning (ML) Engineers.",
+  },
+  {
+    id: 50,
+    question: "The overall goal of Gensyn is to make AI development more...",
+    options: [
+      "Exclusive and difficult.",
+      "Accessible and efficient.",
+      "Expensive and slow.",
+      "Secretive and mysterious.",
+    ],
+    answer: "Accessible and efficient.",
+  },
+  {
+    id: 49,
+    question: "What is a GPU?",
+    options: [
+      "General Processing Unit.",
+      "Gaming Processing Unit.",
+      "Global Positioning Unit.",
+      "Graphics Processing Unit.",
+    ],
+    answer: "Graphics Processing Unit.",
+  },
+];
 
- export const easyQuestionBank =  [
-    {
-      "id": 1,
-      "question": "What is the main purpose of the Gensyn Protocol?",
-      "options": [
-        "To build a new social media platform.",
-        "To create a trustless protocol for deep learning computation.",
-        "To design faster computer chips.",
-        "To offer a video streaming service."
-      ],
-      "answer": "To create a trustless protocol for deep learning computation."
-    },
-    {
-      "id": 2,
-      "question": "What kind of network is Gensyn building for AI training?",
-      "options": [
-        "A centralized network owned by one company.",
-        "A decentralized network open to anyone.",
-        "A private network for universities only.",
-        "A network exclusively for gaming."
-      ],
-      "answer": "A decentralized network open to anyone."
-    },
-    {
-      "id": 3,
-      "question": "Who are the 'Submitters' in the Gensyn network?",
-      "options": [
-        "The people who provide the hardware.",
-        "The end-users who provide tasks to be computed.",
-        "The auditors who check the network's security.",
-        "The developers of the protocol."
-      ],
-      "answer": "The end-users who provide tasks to be computed."
-    },
-    {
-      "id": 4,
-      "question": "Who are the 'Solvers' in the Gensyn network?",
-      "options": [
-        "Users who submit questions to the help desk.",
-        "Investors in the protocol.",
-        "Workers who perform the model training on their hardware.",
-        "People who write the documentation."
-      ],
-      "answer": "Workers who perform the model training on their hardware."
-    },
-    {
-      "id": 5,
-      "question": "What is the role of 'Verifiers'?",
-      "options": [
-        "They verify the identity of new users.",
-        "They check the proofs generated by Solvers.",
-        "They write articles about the network.",
-        "They create the AI models."
-      ],
-      "answer": "They check the proofs generated by Solvers."
-    },
-    {
-      "id": 6,
-      "question": "What major problem in the AI industry does Gensyn aim to solve?",
-      "options": [
-        "AI models are not creative enough.",
-        "There are too many programming languages for AI.",
-        "Access to compute power is limited and expensive.",
-        "AI models are difficult to download."
-      ],
-      "answer": "Access to compute power is limited and expensive."
-    },
-    {
-      "id": 7,
-      "question": "How does Gensyn reward participants who provide their compute time?",
-      "options": [
-        "With free software licenses.",
-        "With direct and immediate payments through the protocol.",
-        "With thank you notes.",
-        "With company stock options."
-      ],
-      "answer": "With direct and immediate payments through the protocol."
-    },
-    {
-      "id": 8,
-      "question": "What technology does the Gensyn protocol use to manage tasks and payments programmatically?",
-      "options": [
-        "Email and spreadsheets.",
-        "A team of human administrators.",
-        "Smart contracts.",
-        "A telephone hotline."
-      ],
-      "answer": "Smart contracts."
-    },
-    {
-      "id": 9,
-      "question": "The Gensyn network is described as a layer-1 protocol, what does this mean?",
-      "options": [
-        "It's the first layer of security.",
-        "It's a foundational blockchain network.",
-        "It's only for beginners.",
-        "It has only one feature."
-      ],
-      "answer": "It's a foundational blockchain network."
-    },
-    {
-      "id": 10,
-      "question": "What is BlockAssist?",
-      "options": [
-        "A security feature of the network.",
-        "The name of the Gensyn headquarters.",
-        "An interactive, AI-driven Minecraft environment.",
-        "A customer support chatbot."
-      ],
-      "answer": "An interactive, AI-driven Minecraft environment."
-    },
-    {
-      "id": 11,
-      "question": "What is the purpose of the Gensyn Public Testnet?",
-      "options": [
-        "To sell the final version of the product.",
-        "To allow the community to stress-test the protocol.",
-        "To host a gaming competition.",
-        "To publish blog posts."
-      ],
-      "answer": "To allow the community to stress-test the protocol."
-    },
-    {
-      "id": 12,
-      "question": "What does the term 'trustless' mean for Gensyn?",
-      "options": [
-        "The network is not secure.",
-        "Participants don't need to know or trust each other.",
-        "The network has never been tested.",
-        "You can't trust the results."
-      ],
-      "answer": "Participants don't need to know or trust each other."
-    },
-    {
-      "id": 13,
-      "question": "The Gensyn network is a marketplace for what?",
-      "options": [
-        "Digital art.",
-        "Used computer parts.",
-        "Compute power.",
-        "AI models."
-      ],
-      "answer": "Compute power."
-    },
-    {
-      "id": 14,
-      "question": "What is one of the fundamental challenges Gensyn solves, as mentioned in the docs?",
-      "options": [
-        "Designing cool logos.",
-        "The verification of completed ML work.",
-        "Marketing the network.",
-        "Hiring employees."
-      ],
-      "answer": "The verification of completed ML work."
-    },
-    {
-      "id": 15,
-      "question": "How does BlockAssist help users understand Gensyn?",
-      "options": [
-        "By providing a written exam.",
-        "By visualizing what decentralized AI coordination looks like.",
-        "By offering financial advice.",
-        "By installing software for them."
-      ],
-      "answer": "By visualizing what decentralized AI coordination looks like."
-    },
-    {
-      "id": 16,
-      "question": "The Gensyn network is a custom version of what type of blockchain technology?",
-      "options": [
-        "Bitcoin Sidechain.",
-        "Ethereum Rollup.",
-        "Solana Fork.",
-        "Ripple Ledger."
-      ],
-      "answer": "Ethereum Rollup."
-    },
-    {
-      "id": 17,
-      "question": "In BlockAssist, how does the AI bot learn?",
-      "options": [
-        "By reading books.",
-        "By watching videos.",
-        "By observing the user's actions in the game.",
-        "It comes pre-programmed with all skills."
-      ],
-      "answer": "By observing the user's actions in the game."
-    },
-    {
-      "id": 18,
-      "question": "What is a key benefit of decentralizing AI training?",
-      "options": [
-        "It makes training much slower.",
-        "It increases costs for everyone.",
-        "It limits participation to only a few large companies.",
-        "It can lower costs and increase access to compute."
-      ],
-      "answer": "It can lower costs and increase access to compute."
-    },
-    {
-      "id": 19,
-      "question": "Does Gensyn require an 'administrative overseer' to run the network?",
-      "options": [
-        "Yes, a large team is required.",
-        "No, it is facilitated programmatically.",
-        "Only on weekends.",
-        "Yes, a single CEO makes all decisions."
-      ],
-      "answer": "No, it is facilitated programmatically."
-    },
-    {
-      "id": 20,
-      "question": "What is 'parallelisation' in the context of deep learning?",
-      "options": [
-        "Running models one after another.",
-        "Training models across many hardware devices at the same time.",
-        "A type of AI model.",
-        "A security protocol."
-      ],
-      "answer": "Training models across many hardware devices at the same time."
-    },
-    {
-      "id": 21,
-      "question": "What happens after a user trains their model in a BlockAssist 'episode'?",
-      "options": [
-        "The model is deleted.",
-        "The user uploads their personalized model to Hugging Face.",
-        "The user must pay a fine.",
-        "The user wins a prize."
-      ],
-      "answer": "The user uploads their personalized model to Hugging Face."
-    },
-    {
-      "id": 22,
-      "question": "Gensyn is designed to capture 'latent compute supply'. What does this mean?",
-      "options": [
-        "The most expensive compute power available.",
-        "Compute power that is currently idle or underutilized.",
-        "Only compute power from laptops.",
-        "Compute power that doesn't exist yet."
-      ],
-      "answer": "Compute power that is currently idle or underutilized."
-    },
-    {
-      "id": 23,
-      "question": "The final phase of the Gensyn Testnet will culminate in what event?",
-      "options": [
-        "A party for the developers.",
-        "The shutdown of the network.",
-        "The Mainnet launch.",
-        "The release of a new game."
-      ],
-      "answer": "The Mainnet launch."
-    },
-    {
-      "id": 24,
-      "question": "The Gensyn protocol is designed for what specific type of computation?",
-      "options": [
-        "General web browsing.",
-        "Sending emails.",
-        "Deep learning.",
-        "Video editing."
-      ],
-      "answer": "Deep learning."
-    },
-    {
-      "id": 25,
-      "question": "In a decentralized system, who owns the hardware?",
-      "options": [
-        "One central company (e.g., Gensyn).",
-        "The individual participants of the network.",
-        "The government.",
-        "No one owns it."
-      ],
-      "answer": "The individual participants of the network."
-    },
-    {
-      "id": 26,
-      "question": "What is a 'cold-start' issue for a marketplace?",
-      "options": [
-        "The servers get too cold.",
-        "The challenge of matching supply and demand when the market is new.",
-        "Users forget their passwords.",
-        "The website loads slowly."
-      ],
-      "answer": "The challenge of matching supply and demand when the market is new."
-    },
-    {
-      "id": 27,
-      "question": "The documentation mentions that for ML engineers, which is often more important: data privacy or model privacy?",
-      "options": [
-        "Model privacy.",
-        "Data privacy.",
-        "They are equally important.",
-        "Neither is important."
-      ],
-      "answer": "Data privacy."
-    },
-    {
-      "id": 28,
-      "question": "What community platform is mentioned for staying up to date on Gensyn's progress?",
-      "options": [
-        "Facebook.",
-        "TikTok.",
-        "Discord.",
-        "LinkedIn."
-      ],
-      "answer": "Discord."
-    },
-    {
-      "id": 29,
-      "question": "BlockAssist turns reinforcement learning into a what?",
-      "options": [
-        "A boring chore.",
-        "A difficult math problem.",
-        "A playable experiment.",
-        "A movie."
-      ],
-      "answer": "A playable experiment."
-    },
-    {
-      "id": 30,
-      "question": "What is the general goal of a 'Testnet' in the world of crypto and web3?",
-      "options": [
-        "To process real financial transactions.",
-        "To provide a live, real-world testing environment without real economic value.",
-        "To be the final, finished product.",
-        "To store user photos."
-      ],
-      "answer": "To provide a live, real-world testing environment without real economic value."
-    },
-    {
-      "id": 31,
-      "question": "Gensyn is a marketplace where people who need compute are the...",
-      "options": [
-        "Supply.",
-        "Demand.",
-        "Regulators.",
-        "Workers."
-      ],
-      "answer": "Demand."
-    },
-    {
-      "id": 32,
-      "question": "Gensyn is a marketplace where people who have spare hardware are the...",
-      "options": [
-        "Supply.",
-        "Demand.",
-        "Customers.",
-        "Designers."
-      ],
-      "answer": "Supply."
-    },
-    {
-      "id": 33,
-      "question": "What is a major benefit of using a decentralized network over a centralized one?",
-      "options": [
-        "It's controlled by a single company you can trust.",
-        "It's generally slower and less reliable.",
-        "It's resistant to censorship or control by a single entity.",
-        "It always costs more."
-      ],
-      "answer": "It's resistant to censorship or control by a single entity."
-    },
-    {
-      "id": 34,
-      "question": "The process of checking if work was done correctly is called:",
-      "options": [
-        "Guessing.",
-        "Verification.",
-        "Computation.",
-        "Submission."
-      ],
-      "answer": "Verification."
-    },
-    {
-      "id": 35,
-      "question": "What does AI stand for?",
-      "options": [
-        "Automated Intelligence.",
-        "Artistic Intelligence.",
-        "Artificial Intelligence.",
-        "Actual Intelligence."
-      ],
-      "answer": "Artificial Intelligence."
-    },
-    {
-      "id": 36,
-      "question": "What is 'Reinforcement Learning'?",
-      "options": [
-        "A type of memory card.",
-        "Learning from a static dataset.",
-        "A type of machine learning where an agent learns by getting rewards or punishments.",
-        "A method for making computer hardware stronger."
-      ],
-      "answer": "A type of machine learning where an agent learns by getting rewards or punishments."
-    },
-    {
-      "id": 37,
-      "question": "What is the name of the popular game that BlockAssist is built in?",
-      "options": [
-        "Fortnite.",
-        "Roblox.",
-        "Minecraft.",
-        "Among Us."
-      ],
-      "answer": "Minecraft."
-    },
-    {
-      "id": 38,
-      "question": "The Gensyn network helps to coordinate remote...",
-      "options": [
-        "Meetings.",
-        "Execution.",
-        "Parties.",
-        "Data storage."
-      ],
-      "answer": "Execution."
-    },
-    {
-      "id": 39,
-      "question": "What is a 'node' in a decentralized network?",
-      "options": [
-        "A central server.",
-        "An individual computer or participant connected to the network.",
-        "A type of cable.",
-        "A user's password."
-      ],
-      "answer": "An individual computer or participant connected to the network."
-    },
-    {
-      "id": 40,
-      "question": "Does using the Gensyn Testnet involve transacting real economic value?",
-      "options": [
-        "Yes, you can become a millionaire on the testnet.",
-        "No, the final phase will culminate in the Mainnet for real value.",
-        "Only on Tuesdays.",
-        "Yes, but only for developers."
-      ],
-      "answer": "No, the final phase will culminate in the Mainnet for real value."
-    },
-    {
-      "id": 41,
-      "question": "What is a key component for training almost any large AI model?",
-      "options": [
-        "A fast internet connection for streaming movies.",
-        "A good microphone.",
-        "Access to powerful compute hardware like GPUs.",
-        "A comfortable chair."
-      ],
-      "answer": "Access to powerful compute hardware like GPUs."
-    },
-    {
-      "id": 42,
-      "question": "The process of training an AI model involves feeding it large amounts of...",
-      "options": [
-        "Electricity.",
-        "Data.",
-        "Encouragement.",
-        "Coffee."
-      ],
-      "answer": "Data."
-    },
-    {
-      "id": 43,
-      "question": "A 'protocol' in this context is a set of...",
-      "options": [
-        "Rules and guidelines for communication between computers.",
-        "Company policies for employees.",
-        "Legal regulations.",
-        "Fashion trends."
-      ],
-      "answer": "Rules and guidelines for communication between computers."
-    },
-    {
-      "id": 44,
-      "question": "What does 'off-chain' mean?",
-      "options": [
-        "Something that happens on the main blockchain.",
-        "Transactions or computations that occur outside of the main blockchain.",
-        "A broken link in a chain.",
-        "A system that is not working."
-      ],
-      "answer": "Transactions or computations that occur outside of the main blockchain."
-    },
-    {
-      "id": 45,
-      "question": "Why is 'work verification' a hard problem for deep learning?",
-      "options": [
-        "Because AI models are simple.",
-        "Because each step of the computation depends on the previous one.",
-        "Because no one cares if the work is correct.",
-        "Because the files are too large to email."
-      ],
-      "answer": "Because each step of the computation depends on the previous one."
-    },
-    {
-      "id": 46,
-      "question": "What is the general idea behind a 'marketplace'?",
-      "options": [
-        "A place where only one person can sell things.",
-        "A system that brings buyers and sellers together.",
-        "A social media group.",
-        "A type of software bug."
-      ],
-      "answer": "A system that brings buyers and sellers together."
-    },
-    {
-      "id": 47,
-      "question": "Who can become a 'Solver' on the Gensyn network?",
-      "options": [
-        "Only large corporations.",
-        "Anyone with compatible compute hardware.",
-        "Only people with a PhD.",
-        "Only the original creators."
-      ],
-      "answer": "Anyone with compatible compute hardware."
-    },
-    {
-      "id": 48,
-      "question": "The Gensyn protocol is intended to be used by what kind of engineers?",
-      "options": [
-        "Mechanical Engineers.",
-        "Civil Engineers.",
-        "Machine Learning (ML) Engineers.",
-        "Sound Engineers."
-      ],
-      "answer": "Machine Learning (ML) Engineers."
-    },
-    {
-      "id": 49,
-      "question": "What is a GPU?",
-      "options": [
-        "General Processing Unit.",
-        "Graphics Processing Unit.",
-        "Gaming Processing Unit.",
-        "Global Positioning Unit."
-      ],
-      "answer": "Graphics Processing Unit."
-    },
-    {
-      "id": 50,
-      "question": "The overall goal of Gensyn is to make AI development more...",
-      "options": [
-        "Exclusive and difficult.",
-        "Expensive and slow.",
-        "Accessible, efficient, and verifiable.",
-        "Secretive and mysterious."
-      ],
-      "answer": "Accessible, efficient, and verifiable."
-    }
-  ]
+
+// console.log("the total length is ",easyQuestionBank.length)

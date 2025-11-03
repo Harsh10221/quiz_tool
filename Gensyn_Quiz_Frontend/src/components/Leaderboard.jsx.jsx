@@ -204,6 +204,7 @@ export default function Leaderboard() {
     const getLeaderboardData = async () => {
       try {
         const res = await axios.get(
+          // "https://quiz-backend-zyav.onrender.com/api/v1/users/get/leaderboard-data"
           "http://localhost:3000/api/v1/users/get/leaderboard-data"
         );
         // console.log("this is res",res.data.top10LeaderboardData)

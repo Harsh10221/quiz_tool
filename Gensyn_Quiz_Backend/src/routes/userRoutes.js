@@ -3,6 +3,7 @@ import {
   handleCallBackFromDiscord,
   handlediscordAuth,
   handleEasyQuestion,
+  handleGuestLogin,
   handleHardAnswerCheck,
   handleHardQuestion,
   handleLeaderboardData,
@@ -16,9 +17,11 @@ import { verifyJwt } from "../middleware/auth.middleware.js";
 const router = express.Router();
 
 router.get("/auth/discord", handlediscordAuth);
+router.post("/guest-login", handleGuestLogin);
 router.get("/auth/discord/callback", handleCallBackFromDiscord);
 router.post("/logout",verifyJwt,handleLogout);
 router.get("/get/user-details",verifyJwt,handleUserDetails);
+
 
 router.get("/get/leaderboard-data",handleLeaderboardData);
 

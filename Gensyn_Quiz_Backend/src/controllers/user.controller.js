@@ -6,6 +6,7 @@ import { mediumQuestionBank } from "../services/medium_questions_bank.js";
 import { hardQuestionBank } from "../services/hard_questions_bank.js";
 import User from "../models/user.model.js";
 import Leaderboard from "../models/leaderboard.model.js";
+import { set } from "mongoose";
 
 // console.log(`[Controller File] Module Execution: ${process.env.DISCORD_CLIENT_ID}`);
 
@@ -71,6 +72,77 @@ const handleCallBackFromDiscord = async (req, res) => {
 
     //create a user model and save the data into it
 
+    const guestUserAccessToken = req.cookies.accessToken;
+
+    // console.log("This is guest useraccest ",guestUserAccessToken)
+    // console.log("this are cookies",req.cookies)
+    // console.log("this are cookie",req.cookie)
+
+    if (guestUserAccessToken) {
+      // console.log("entered in guestuseraccount");
+      try {
+        const decode = jwt.verify(
+          guestUserAccessToken,
+          process.env.ACCESS_TOKEN_SECRET
+        );
+
+        const existingUser = await User.findById(decode);
+
+        if (!existingUser) {
+          res.clearCookie("accessToken").clearCookie("refreshToken").json({
+            message:
+              "The user is not exist with this userid, chearing cookie... ",
+          });
+        }
+
+        // console.log("existinguser", existingUser);
+
+        existingUser.userName = user.username;
+        existingUser.userId = user.id;
+        existingUser.avatar_Hash = user.avatar;
+        existingUser.banner_Hash = user.banner;
+        existingUser.isGuest = false;
+
+        const newAccess_TokenForMigratedUser = jwt.sign(
+          { _id: existingUser._id.toString() },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+        );
+        const newRefresh_TokenForMigratedUser = jwt.sign(
+          { _id: existingUser._id.toString() },
+          process.env.REFRESH_TOKEN_SECRET,
+          { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+        );
+
+        // console.log("i am printing before the save ");
+        await existingUser.save();
+        // console.log("i am printing after the save ");
+
+        return res
+          .cookie("accessToken", newAccess_TokenForMigratedUser, {
+            maxAge: 864000000,
+            httpOnly: true,
+            sameSite: "none",
+          })
+          .cookie("refreshToken", newRefresh_TokenForMigratedUser, {
+            maxAge: 2592000000,
+            httpOnly: true,
+            sameSite: "none",
+          })
+          .redirect("http://localhost:5173/leaderboard");
+        // .json({message:"Migration successfull"})
+      } catch (error) {
+        console.error(error.message);
+        res.clearCookie("accessToken").clearCookie("refreshToken").json({
+          message: "Cookie cleared successfuly ",
+        });
+      }
+    }
+
+    // console.log(
+    //   "\n\n\n\ni should not print when the guest is migrated \n\n\n\n\n"
+    // );
+
     const result = await User.create({
       userName: user.username,
       userId: user.id,
@@ -78,7 +150,7 @@ const handleCallBackFromDiscord = async (req, res) => {
       banner_Hash: user.banner,
     });
 
-    console.log("this is result ", result);
+    // console.log("this is result ", result);
 
     const access_Token = jwt.sign(
       { _id: result._id.toString() },
@@ -110,7 +182,6 @@ const handleCallBackFromDiscord = async (req, res) => {
       })
       .redirect("http://localhost:5173/leaderboard");
   } catch (error) {
-    // console.error("Error during Discord auth:", error);
     if (error.code === 11000) {
       console.log("duplicate key errror likey user exist");
 
@@ -192,7 +263,7 @@ const handleUserDetails = async (req, res) => {
 const handleLogout = async (req, res) => {
   try {
     res.clearCookie("accessToken").clearCookie("refreshToken").json({
-      message: "User logout successfully",
+      message: "Usr logout successfully",
     });
   } catch (error) {
     console.error(error);
@@ -255,8 +326,8 @@ const handleMediumeAnswerCheck = async (req, res) => {
   let score = 0;
   const data = req.body.data;
 
-  if(!data){
-    return res.status(400).json({message:"Data is required"})
+  if (!data) {
+    return res.status(400).json({ message: "Data is required" });
   }
 
   for (let i = 0; i < data.length; i++) {
@@ -314,7 +385,7 @@ const handleHardAnswerCheck = async (req, res) => {
   const data = req.body.data;
 
   if (!data) {
-    return res.status(400).json({message:"Data is required"})
+    return res.status(400).json({ message: "Data is required" });
   }
 
   for (let i = 0; i < data.length; i++) {
@@ -386,12 +457,12 @@ const handleHardAnswerCheck = async (req, res) => {
 // };
 
 const handleUpdateScore = async (req, res) => {
-  // const { level, totalTimeLeft } = req.body;
-  const { level, score, totalTimeLeft } = req.body;
-  // const score = 3;
+  const { level, totalTimeLeft } = req.body;
+  // const { level, score, totalTimeLeft } = req.body;
+  const score = 9;
   // const totalTimeLeft = 100;
 
-  console.log("Received update request ", req.body);
+  // console.log("Received update request ", req.body);
 
   if (!level || !score) {
     return res.status(400).json({ message: "level and score are required" });
@@ -410,9 +481,9 @@ const handleUpdateScore = async (req, res) => {
   if (level === "Beginner") {
     scoreFieldToUpdate = "beginnerHighestScore";
     // scoreFieldToUpdate = user.scores.beginner.beginnerHighestScore;
-    console.log("user old score", user.scores.Beginner.beginnerHighestScore);
+    // console.log("user old score", user.scores.Beginner.beginnerHighestScore);
     if (newlevelScore > user.scores.Beginner.beginnerHighestScore || 0) {
-      console.log("we are enter in if loop ");
+      // console.log("we are enter in if loop ");
       isNewHighScore = true;
       if (user.userLevel == "Beginner") {
         if (newlevelScore > 7) {
@@ -422,7 +493,7 @@ const handleUpdateScore = async (req, res) => {
     }
   } else if (level === "Intermediate") {
     scoreFieldToUpdate = "intermediateHighestScore";
-    console.log("i was in intermeditate  ");
+    // console.log("i was in intermeditate  ");
     newlevelScore *= 2;
     if (
       newlevelScore > user.scores.Intermediate.intermediateHighestScore ||
@@ -450,7 +521,7 @@ const handleUpdateScore = async (req, res) => {
 
   try {
     if (isNewHighScore) {
-      console.log(`New high score for ${level}: ${newlevelScore}`);
+      // console.log(`New high score for ${level}: ${newlevelScore}`);
 
       // console.log("level",typeof level)
       // console.log("This is score field to update",user?.scores[level].scoreFieldToUpdate)
@@ -462,7 +533,7 @@ const handleUpdateScore = async (req, res) => {
       user.set(fieldPathForScoreUpdate, newlevelScore);
       user.set(fieldPathForTotalTimeConsumedUpdate, 150 - totalTimeLeft);
 
-      console.log("before update user doc:", user);
+      // console.log("before update user doc:", user);
 
       const newTotalScore =
         user.scores.Beginner.beginnerHighestScore +
@@ -474,12 +545,15 @@ const handleUpdateScore = async (req, res) => {
         user.scores.Intermediate.timeConsumed +
         user.scores.Expert.timeConsumed;
 
-      console.log("this is new totalscore:", newTotalScore);
+      // console.log("this is new totalscore:", newTotalScore);
       user.totalHighScore = newTotalScore;
       user.totalTimeConsumed = newTotalTimeConsumed;
 
       await user.save();
-      console.log("User document updated:", user);
+      // console.log("User document updated:", user);
+      
+      // console.log("This is user username :", user.userName);
+
 
       const leaderboardEntry = await Leaderboard.findOneAndUpdate(
         { userId: user._id },
@@ -487,7 +561,8 @@ const handleUpdateScore = async (req, res) => {
           userId: user._id,
           discord_Id: user.userId,
           userName: user.userName,
-          avatar: user.avatar_Hash,
+          avatar_hash: user.avatar_Hash,
+          avatarUrl: user.avatarUrl,
           totalScore: newTotalScore,
           totalTimeConsumed: newTotalTimeConsumed,
         },
@@ -545,6 +620,84 @@ const handleLeaderboardData = async (req, res) => {
   });
 };
 
+const handleGuestLogin = async (req, res) => {
+  const { username: userName, avatarUrl } = req.body;
+
+  // console.log("THis is req body ", req.body);
+  // console.log("THis is data ", userName, avatarUrl);
+  try {
+    const isExist = await User.findOne({ userName });
+
+    if (isExist) {
+      return res.status(400).json({
+        message: "User name is already taken please choose another ",
+      });
+    }
+
+    const result = await User.create({
+      userName,
+      avatarUrl,
+      isGuest: true,
+    });
+
+    if (!result) {
+      const error = new Error(
+        "Unable to create guest user. Please try again later."
+      );
+      throw error;
+    }
+
+    const access_Token = jwt.sign(
+      { _id: result._id.toString() },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+    );
+
+    const refresh_Token = jwt.sign(
+      { _id: result._id.toString() },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+    );
+
+    const updatedoc = await User.findByIdAndUpdate(result._id, {
+      refresh_Token,
+    });
+
+    // console.log("this is new doc", updatedoc);
+
+    if (!updatedoc) {
+      const error = new Error(
+        "Error while updating doc with accessToken or refreshToken "
+      );
+      throw error;
+    }
+
+    // console.log("this aare tokens", access_Token);
+    // console.log("this aare tokens", refresh_Token);
+
+    return res
+      .cookie("accessToken", access_Token, {
+        maxAge: 864000000,
+        httpOnly: true,
+        secure: false,
+        path: "/",
+      })
+      .cookie("refreshToken", refresh_Token, {
+        maxAge: 2592000000,
+        httpOnly: true,
+        secure: false,
+        path: "/",
+      })
+      .json({
+        message: "Guest user created succssfully",
+      });
+  } catch (error) {
+    console.error("there is a error", error);
+    // throw new Error(error.message);
+  }
+};
+
+
 export {
   handlediscordAuth,
   handleMediumQuestion,
@@ -557,4 +710,5 @@ export {
   handleLogout,
   handleUpdateScore,
   handleLeaderboardData,
+  handleGuestLogin,
 };

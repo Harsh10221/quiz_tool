@@ -66,8 +66,8 @@ const userSchema = new mongoose.Schema(
     },
     userId: {
       type: String,
-      required: true,
       unique: true,
+      sparse: true,
     },
     avatar_Hash: {
       type: String,
@@ -79,6 +79,13 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     refresh_Token: {
+      type: String,
+    },
+    isGuest: {
+      type: Boolean,
+      default: false,
+    },
+    avatarUrl: {
       type: String,
     },
   },
