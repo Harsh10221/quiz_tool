@@ -28,8 +28,8 @@ useEffect(() => {
   const getUserDetails = async () => {
     try {
       const response = await axios.get(
-        // "https://quiz-backend-zyav.onrender.com/api/v1/users/get/user-details",
-        "http://localhost:3000/api/v1/users/get/user-details",
+        "https://quiz-backend-zyav.onrender.com/api/v1/users/get/user-details",
+        // "http://localhost:3000/api/v1/users/get/user-details",
         { withCredentials: true } // Sends the cookie
       );
       

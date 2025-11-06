@@ -26,8 +26,8 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
   const handleLogout = async () => {
     try {
       await axios.post(
-        // "https://quiz-backend-zyav.onrender.com/api/v1/users/logout",
-        "http://localhost:3000/api/v1/users/logout",
+        "https://quiz-backend-zyav.onrender.com/api/v1/users/logout",
+        // "http://localhost:3000/api/v1/users/logout",
         {},
         {
           withCredentials: true,
@@ -164,8 +164,8 @@ function LandingPage({ userData, setuserDetails, onNavigate, getPosition }) {
                   <button
                   onClick={() =>
                 (window.location.href =
-                  // "https://quiz-backend-zyav.onrender.com/api/v1/users/auth/discord")
-                  "http://localhost:3000/api/v1/users/auth/discord")
+                  "https://quiz-backend-zyav.onrender.com/api/v1/users/auth/discord")
+                  // "http://localhost:3000/api/v1/users/auth/discord")
               }
                     className="text-white bg-blue-500 w-full text-center 
                  font-medium rounded-xl py-2 px-4 

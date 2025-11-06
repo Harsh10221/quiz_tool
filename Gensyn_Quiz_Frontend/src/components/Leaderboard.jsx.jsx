@@ -3,6 +3,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import ErrorComponent from "../quiz/components/ErrorComponent";
 import { useNavigate } from "react-router-dom";
+import default_profile from "../assets/default_profile.jpg"
 
 // --- SVG Icons (TrophyIcon and CrownIcon remain the same) ---
 
@@ -97,7 +98,7 @@ const Avatar = ({ avatarUrl, fallbackLetter, colorHex, size }) => {
 
   return (
     <img
-      src={avatarUrl || placeholderUrl} // Use provided URL, or placeholder if URL is null/undefined
+      src={avatarUrl || default_profile} // Use provided URL, or placeholder if URL is null/undefined
       alt={fallbackLetter}
       className={`${size} rounded-full object-cover`} // object-cover ensures image fills the circle
       onError={(e) => {
@@ -139,8 +140,9 @@ const PodiumItem = ({ player, rank }) => {
       `}
       >
         <Avatar
-          avatarUrl={`https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png`}
-          // avatarUrl={`https://cdn.discordapp.com/avatars/${player.userId}/${player.ava}.png`}
+        // (player?.discord_Id ) ?
+        //   `https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png` : null
+          avatarUrl={(player?.discord_Id && player?.avatar_hash) ? `https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png` : default_profile}
           fallbackLetter={player?.fallbackLetter}
           colorHex={player?.colorHex}
           size={size}
@@ -167,7 +169,8 @@ const PlayerRow = ({ player, rank }) => (
         </span>
         {/* Replaced div with Avatar component */}
         <Avatar
-          avatarUrl={`https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png`}
+          // avatarUrl={`https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png`}
+          avatarUrl={(player?.discord_Id && player?.avatar_hash) ? `https://cdn.discordapp.com/avatars/${player?.discord_Id}/${player?.avatar_hash}.png` : default_profile}
           fallbackLetter={player.fallbackLetter}
           colorHex={player.colorHex}
           size="w-10 h-10"
@@ -204,8 +207,8 @@ export default function Leaderboard() {
     const getLeaderboardData = async () => {
       try {
         const res = await axios.get(
-          // "https://quiz-backend-zyav.onrender.com/api/v1/users/get/leaderboard-data"
-          "http://localhost:3000/api/v1/users/get/leaderboard-data"
+          "https://quiz-backend-zyav.onrender.com/api/v1/users/get/leaderboard-data"
+          // "http://localhost:3000/api/v1/users/get/leaderboard-data"
         );
         // console.log("this is res",res.data.top10LeaderboardData)
         setIsLoading(false);

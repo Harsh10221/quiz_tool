@@ -124,8 +124,8 @@ export default function App() {
       setIsLoading(true);
       try {
         const res = await axios.get(
-          // `https://quiz-backend-zyav.onrender.com/api/v1/users/get/${lvltype}`,
-          `http://localhost:3000/api/v1/users/get/${lvltype}`,
+          `https://quiz-backend-zyav.onrender.com/api/v1/users/get/${lvltype}`,
+          // `http://localhost:3000/api/v1/users/get/${lvltype}`,
           { withCredentials: true }
         );
 
@@ -152,8 +152,8 @@ export default function App() {
 
           try {
             const response = await axios.post(
-              // `https://quiz-backend-zyav.onrender.com/api/v1/users/check/${
-              `http://localhost:3000/api/v1/users/check/${
+              `https://quiz-backend-zyav.onrender.com/api/v1/users/check/${
+              // `http://localhost:3000/api/v1/users/check/${
                 level == "Expert" ? "hard" : "medium"
               }-questions-answers`,
 

@@ -99,7 +99,9 @@ export default function QuizResult({
     try {
       setIsLoading(true);
       await axios.post(
-        "http://localhost:3000/api/v1/users/guest-login",
+
+        "https://quiz-backend-zyav.onrender.com/api/v1/users/guest-login",
+        // "http://localhost:3000/api/v1/users/guest-login",
         {
           username,
           avatarUrl,
@@ -164,17 +166,17 @@ export default function QuizResult({
 
   const onPostWithDiscordNewUser = async () => {
     // console.log("auth with discord ");
-    // window.location.href =
-    //   "https://quiz-backend-zyav.onrender.com/api/v1/users/auth/discord";
-    window.location.href = "http://localhost:3000/api/v1/users/auth/discord";
+    window.location.href =
+      "https://quiz-backend-zyav.onrender.com/api/v1/users/auth/discord";
+    // window.location.href = "http://localhost:3000/api/v1/users/auth/discord";
   };
 
   const onPostWithDiscordCanBeOldUser = async () => {
     setIsLoading(true);
     try {
       const res = await axios.post(
-        // "https://quiz-backend-zyav.onrender.com/api/v1/users/update-score",
-        "http://localhost:3000/api/v1/users/update-score",
+        "https://quiz-backend-zyav.onrender.com/api/v1/users/update-score",
+        // "http://localhost:3000/api/v1/users/update-score",
         {
           score,
           level,
